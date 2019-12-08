@@ -68,9 +68,6 @@ train_trans = bake(prep_trans, train)
 test_trans = bake(prep_trans, test)
 eval_trans = bake(prep_trans, eval)
 
-## Mutation required to predict modes (can't handle factors)
-##test <- mutate_at(test, vars(starts_with("Brand")), funs(as.numeric(as.character(.))))
-##test_trans <- mutate_at(test_trans, vars(starts_with("Brand")), funs(as.numeric(as.character(.))))
 save.image(file = "model_prep.RData")
 
 # MODELING
@@ -106,7 +103,7 @@ fit_rf2 <- train(PH~., data=train_trans, method="rf", tuneGrid = grid_rf, import
 fit_svm2 <- train(PH~., data=train_trans, method = "svmRadial", tuneGrid = grid_svm, trControl=trC, tuneLength=tl, metric="RMSE")
 fit_cub2 <- train(PH~., data=train_trans, method = 'cubist', tuneGrid = grid_cub, trControl=trC, tuneLength=tl, metric="RMSE")
 
-
+## Save Models
 saveRDS(fit_mars1, "fit_mars1.rsd")
 saveRDS(fit_mars2, "fit_mars2.rsd")
 saveRDS(fit_rf1, "fit_rf1.rsd")
@@ -114,4 +111,4 @@ saveRDS(fit_rf2, "fit_rf2.rsd")
 saveRDS(fit_cub1, "fit_cub1.rsd")
 saveRDS(fit_cub2, "fit_cub2.rsd")
 saveRDS(fit_svm1, "fit_svm1.rsd")
-saveRDS(fit_svm2, "fit_svm2.rsd)
+saveRDS(fit_svm2, "fit_svm2.rsd")
