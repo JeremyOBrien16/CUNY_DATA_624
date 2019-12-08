@@ -68,7 +68,12 @@ train_trans = bake(prep_trans, train)
 test_trans = bake(prep_trans, test)
 eval_trans = bake(prep_trans, eval)
 
-save.image(file = "model_prep.RData")
+saveRDS(train, file = "train.rsd")
+saveRDS(test, file = "test.rsd")
+saveRDS(eval, file = "eval.rsd")
+saveRDS(train_trans, file = "train_trans.rsd")
+saveRDS(test_trans, file = "test_trans.rsd")
+saveRDS(eval_trans, file = "eval_trans.rsd")
 
 # MODELING
 ## parameters
