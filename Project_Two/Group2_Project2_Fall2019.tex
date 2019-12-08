@@ -300,69 +300,32 @@ total cases. These are: 1. MFR (continuous, 8.2\%) 2. BrandCode
 {[}CONTENT EDITORS: DO WE STILL WANT TO CREATE MISSING DATA TABLE? IF
 SO, MISSINGDATA OBJECT NEEDS TO BE REBUILT IN MODEL\_PREP.R{]}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## TO DO}
-\NormalTok{Tbl_Top_MissingData <-}\StringTok{ }\NormalTok{MissingData }\OperatorTok{%>%}\StringTok{ }\KeywordTok{top_n}\NormalTok{(}\DecValTok{11}\NormalTok{, n) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{column_to_rownames}\NormalTok{(}\StringTok{"predictor"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{kable}\NormalTok{(}\DataTypeTok{caption =} \StringTok{"Variables with Highest Frequency of NA Values"}\NormalTok{, }
-  \DataTypeTok{booktabs =}\NormalTok{ T, }\DataTypeTok{digits =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{kable_styling}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{row_spec}\NormalTok{()}
+\begin{table}[H]
 
-\NormalTok{Tbl_Top_MissingData}
-\end{Highlighting}
-\end{Shaded}
+\caption{\label{tab:unnamed-chunk-2}Variables with Highest Frequency of NA Values}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}{lrrrrrrrrrrr}
+\toprule
+\textbf{ } & \textbf{MFR} & \textbf{BrandCode} & \textbf{FillerSpeed} & \textbf{PCVolume} & \textbf{PSCCO2} & \textbf{FillOunces} & \textbf{PSC} & \textbf{CarbPressure1} & \textbf{HydPressure4} & \textbf{CarbPressure} & \textbf{CarbTemp}\\
+\midrule
+\rowcolor{gray!6}  n & 212.0 & 120.0 & 57.0 & 39.0 & 39.0 & 38.0 & 33.0 & 32.0 & 30.0 & 27.0 & 26\\
+\% & 8.2 & 4.7 & 2.2 & 1.5 & 1.5 & 1.5 & 1.3 & 1.2 & 1.2 & 1.1 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \hypertarget{response-variable}{%
 \section{Response Variable}\label{response-variable}}
 
 {[}CONTENT EDITORS: DO WE STILL WANT TO CREATE VARIABLE HISTOGRAMS?{]}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## TO DO (remove echo/eval when ready)}
+\begin{wrapfigure}{r}{0.5\textwidth}
 
-\NormalTok{Plt_pH1 <-}\StringTok{ }\NormalTok{StudentData }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(PH) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{type =} \StringTok{"pH"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(PH)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ ..density..), }
- \DataTypeTok{bins =} \DecValTok{40}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"#57A0D3"}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.65}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{, }
- \DataTypeTok{color =} \StringTok{"#000000"}\NormalTok{, }\DataTypeTok{size =} \FloatTok{0.65}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_x_continuous}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{3.5}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{""}\NormalTok{, }
- \DataTypeTok{y =} \StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{axis.ticks.length.x =} \KeywordTok{unit}\NormalTok{(}\DecValTok{0}\NormalTok{, }\StringTok{"cm"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{type)}
+\hfill{}\includegraphics[width=1\textwidth]{Group2_Project2_Fall2019_files/figure-latex/unnamed-chunk-3-1} 
 
-\NormalTok{Plt_pH2 <-}\StringTok{ }\NormalTok{StudentData }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(PH) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{type =} \StringTok{"pH"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(PH, }\StringTok{""}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"#57A0D3"}\NormalTok{, }
- \DataTypeTok{outlier.colour =} \StringTok{"#4682B4"}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.65}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{(), }\DataTypeTok{strip.background =} \KeywordTok{element_blank}\NormalTok{(), }
-  \DataTypeTok{strip.text.x =} \KeywordTok{element_blank}\NormalTok{(), }\DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{(), }
-  \DataTypeTok{axis.ticks.length.x =} \KeywordTok{unit}\NormalTok{(}\DecValTok{0}\NormalTok{, }\StringTok{"cm"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{""}\NormalTok{, }
- \DataTypeTok{y =} \StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_discrete}\NormalTok{(}\DataTypeTok{labels =} \StringTok{"pH"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_x_continuous}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{type, }\DataTypeTok{nrow =} \DecValTok{1}\NormalTok{, }\DataTypeTok{strip.position =} \StringTok{"top"}\NormalTok{)}
-
-\NormalTok{Plt_pH3 <-}\StringTok{ }\NormalTok{StudentData }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(}\StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(PH, }\StringTok{""}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =} \StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{), }
- \DataTypeTok{outlier.colour =} \StringTok{"#4682B4"}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{, }\DataTypeTok{strip.background =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{strip.text.x =} \KeywordTok{element_blank}\NormalTok{(), }\DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{axis.text.y =} \KeywordTok{element_blank}\NormalTok{()) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{""}\NormalTok{, }\DataTypeTok{y =} \StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{scale_x_continuous}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{1}\NormalTok{, }
- \DataTypeTok{strip.position =} \StringTok{"top"}\NormalTok{, }\DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{)}
-
-\NormalTok{Plt_pH4 <-}\StringTok{ }\NormalTok{StudentData }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(PH, }\StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(}\StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(PH)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ ..density.., }
- \DataTypeTok{fill =} \StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{), }\DataTypeTok{bins =} \DecValTok{20}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.65}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{, }
- \DataTypeTok{color =} \StringTok{"#000000"}\NormalTok{, }\DataTypeTok{size =} \FloatTok{0.65}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{scale_x_continuous}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }
- \FloatTok{3.5}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{""}\NormalTok{, }\DataTypeTok{y =} \StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{, }
- \DataTypeTok{nrow =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{axis.ticks.length.x =} \KeywordTok{unit}\NormalTok{(}\DecValTok{0}\NormalTok{, }\StringTok{"cm"}\NormalTok{), }\DataTypeTok{axis.text.y =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
-
-\NormalTok{Plt_pH_lay <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{))}
-
-\KeywordTok{grid.arrange}\NormalTok{(Plt_pH1, Plt_pH4, Plt_pH2, Plt_pH3, }\DataTypeTok{layout_matrix =}\NormalTok{ Plt_pH_lay, }
- \DataTypeTok{heights =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{padding =} \KeywordTok{unit}\NormalTok{(}\DecValTok{0}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+\caption{Distribution of Response Variable: pH}\label{fig:unnamed-chunk-3}
+\end{wrapfigure}
 
 The response variable PH is a logarithmically scaled measure of how
 acidic or basic a water-based solution is
@@ -396,31 +359,7 @@ by brand type.
 {[}CONTENT EDITORS: DO WE STILL WANT TO CREATE THESE TABLES? IF SO,
 OUTLIER\_WITH OBJECT NEEDS TO BE REBUILT IN MODEL\_PREP.R{]}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## TO DO (remove echo/eval when ready)}
-
-\NormalTok{Plt_Outlier1 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(outlier_with, }\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =} \StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{), }
- \DataTypeTok{color =} \StringTok{"#999999"}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Density Distribution of Numeric Predictor Variables"}\NormalTok{, }
- \DataTypeTok{subtitle =} \StringTok{"With Outliers"}\NormalTok{, }\DataTypeTok{x =} \StringTok{""}\NormalTok{, }\DataTypeTok{y =} \StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_vline}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ outlier_with, }
- \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{xintercept =}\NormalTok{ outlier_lower), }\DataTypeTok{color =} \StringTok{"#ff8080"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{geom_vline}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ outlier_with, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{xintercept =}\NormalTok{ outlier_upper), }
-  \DataTypeTok{color =} \StringTok{"#ff8080"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{key, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{, }
- \DataTypeTok{nrow =} \DecValTok{3}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.y =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{(), }\DataTypeTok{axis.text.x =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{()}
-
-\NormalTok{Plt_Outlier2 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(outlier_wo, }\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =} \StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{), }
- \DataTypeTok{color =} \StringTok{"#999999"}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{subtitle =} \StringTok{"Without Outliers"}\NormalTok{, }
- \DataTypeTok{x =} \StringTok{""}\NormalTok{, }\DataTypeTok{y =} \StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{key, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.y =} \KeywordTok{element_blank}\NormalTok{(), }\DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{axis.text.x =} \KeywordTok{element_blank}\NormalTok{(), }\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }
- \DataTypeTok{legend.key.size =} \KeywordTok{unit}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }\StringTok{"cm"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{()}
-
-\KeywordTok{grid.arrange}\NormalTok{(Plt_Outlier1, Plt_Outlier2, }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{, }\DataTypeTok{heights =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }
- \DecValTok{2}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{Group2_Project2_Fall2019_files/figure-latex/unnamed-chunk-4-1.pdf}
 
 As no predictor variable shows a particularly pronounced monotonic
 linear relationship with response, a non-linear approach to modeling
@@ -436,57 +375,17 @@ related to system processes.
 {[}CONTENT EDITORS: DO WE STILL WANT TO CREATE THESE TABLES? IF SO,
 OUTLIER\_WITH OBJECT NEEDS TO BE REBUILT IN MODEL\_PREP.R{]}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## TO DO (remove echo/eval when ready)}
-\NormalTok{Plt_Scatter1 <-}\StringTok{ }\NormalTok{outlier_with }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{PH =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(PH))) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ value, }\DataTypeTok{y =}\NormalTok{ PH)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_jitter}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{), }
- \DataTypeTok{alpha =} \FloatTok{0.15}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat_smooth}\NormalTok{(}\DataTypeTok{color =} \StringTok{"#000000"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"loess"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"pH~Predictor Scatterplots"}\NormalTok{, }\DataTypeTok{subtitle =} \StringTok{"Without Outliers"}\NormalTok{, }
-  \DataTypeTok{x =} \StringTok{""}\NormalTok{, }\DataTypeTok{y =} \StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{key, }\DataTypeTok{scales =} \StringTok{"free_x"}\NormalTok{, }
- \DataTypeTok{nrow =} \DecValTok{3}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{(), }
- \DataTypeTok{axis.text.x =} \KeywordTok{element_blank}\NormalTok{(), }\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{, }
- \DataTypeTok{legend.key.size =} \KeywordTok{unit}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }\StringTok{"cm"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_color_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"#999999"}\NormalTok{, }
- \StringTok{"#95C8D8"}\NormalTok{, }\StringTok{"#008081"}\NormalTok{, }\StringTok{"#034D92"}\NormalTok{))}
+** Leaving scatter plts for now. Suggestion - maybe trunicate to the the
+top \emph{X} correlated with pH or incorporate after varImp for final
+modes - Or just delete if too cluttered **
 
-
-\NormalTok{Plt_Scatter2 <-}\StringTok{ }\NormalTok{outlier_wo }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{PH =} \KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(PH))) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ value, }\DataTypeTok{y =}\NormalTok{ PH)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_jitter}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{`}\DataTypeTok{Brand Code}\StringTok{`}\NormalTok{), }
- \DataTypeTok{alpha =} \FloatTok{0.15}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat_smooth}\NormalTok{(}\DataTypeTok{color =} \StringTok{"#000000"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"loess"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{subtitle =} \StringTok{"Without Outliers"}\NormalTok{, }\DataTypeTok{x =} \StringTok{""}\NormalTok{, }\DataTypeTok{y =} \StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{key, }\DataTypeTok{scales =} \StringTok{"free_x"}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{(), }\DataTypeTok{axis.text.x =} \KeywordTok{element_blank}\NormalTok{(), }
-  \DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.key.size =} \KeywordTok{unit}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }
-   \StringTok{"cm"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_color_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"#999999"}\NormalTok{, }
- \StringTok{"#95C8D8"}\NormalTok{, }\StringTok{"#008081"}\NormalTok{, }\StringTok{"#034D92"}\NormalTok{))}
-
-\KeywordTok{grid.arrange}\NormalTok{(Plt_Scatter1, Plt_Scatter2, }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{, }\DataTypeTok{heights =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }
- \DecValTok{2}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{Group2_Project2_Fall2019_files/figure-latex/unnamed-chunk-5-1.pdf}
 
 Collinearity measures between numeric predictors indicate that several
 of these variables are heavily related, with correlation values
 exceeding \(\pm{0.7}\).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## TO DO (remove echo/eval when ready)}
-
-\NormalTok{Plt_Corr <-}\StringTok{ }\NormalTok{StudentData }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select_if}\NormalTok{(is.numeric) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{PH) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{ }\KeywordTok{ggcorr}\NormalTok{(}\DataTypeTok{method =} \StringTok{"pairwise.complete.obs"}\NormalTok{, }\DataTypeTok{geom =} \StringTok{"tile"}\NormalTok{, }
-  \DataTypeTok{label =}\NormalTok{ F, }\DataTypeTok{hjust =} \FloatTok{0.95}\NormalTok{, }\DataTypeTok{layout.exp =} \DecValTok{7}\NormalTok{, }\DataTypeTok{label_round =} \DecValTok{1}\NormalTok{, }
-  \DataTypeTok{low =} \StringTok{"#95C8D8"}\NormalTok{, }\DataTypeTok{mid =} \StringTok{"grey90"}\NormalTok{, }\DataTypeTok{high =} \StringTok{"#034D92"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.key.size =} \KeywordTok{unit}\NormalTok{(}\FloatTok{0.6}\NormalTok{, }\StringTok{"cm"}\NormalTok{), }
- \DataTypeTok{legend.justification =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.98}\NormalTok{), }\DataTypeTok{legend.position =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }
-  \FloatTok{0.98}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Predictor Variable Correlation Matrix"}\NormalTok{)}
-
-\NormalTok{g =}\StringTok{ }\KeywordTok{ggplot_build}\NormalTok{(Plt_Corr)}
-\NormalTok{g}\OperatorTok{$}\NormalTok{data[[}\DecValTok{2}\NormalTok{]]}\OperatorTok{$}\NormalTok{size =}\StringTok{ }\DecValTok{2}
-
-\NormalTok{grid}\OperatorTok{::}\KeywordTok{grid.draw}\NormalTok{(}\KeywordTok{ggplot_gtable}\NormalTok{(g))}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{Group2_Project2_Fall2019_files/figure-latex/unnamed-chunk-6-1.pdf}
 
 \hypertarget{data-preparation}{%
 \chapter{Data Preparation}\label{data-preparation}}
@@ -593,10 +492,10 @@ PREPRCESSED MODELS (SET 2) HERE{]}.
 \toprule
 MAPE & RMSE & RSquared & MAE & Method\\
 \midrule
-\rowcolor{gray!6}  1.0948 & 0.5916 & 0.6757 & 0.4319 & rf\\
-1.1629 & 0.5500 & 0.6979 & 0.3938 & cubist\\
-\rowcolor{gray!6}  1.2664 & 0.6985 & 0.5165 & 0.5037 & svmRadial\\
-1.5170 & 0.6921 & 0.5261 & 0.5153 & earth\\
+\rowcolor{gray!6}  0.0079 & 0.0947 & 0.7005 & 0.0669 & cubist\\
+0.0082 & 0.0973 & 0.6989 & 0.0700 & rf\\
+\rowcolor{gray!6}  0.0103 & 0.1211 & 0.5144 & 0.0878 & svmRadial\\
+0.0108 & 0.1226 & 0.5030 & 0.0920 & earth\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -610,10 +509,10 @@ MAPE & RMSE & RSquared & MAE & Method\\
 \toprule
 MAPE & RMSE & RSquared & MAE & Method\\
 \midrule
-\rowcolor{gray!6}  0.0081 & 0.0965 & 0.6904 & 0.0688 & cubist\\
-0.0088 & 0.1030 & 0.6735 & 0.0751 & rf\\
-\rowcolor{gray!6}  0.0104 & 0.1224 & 0.5042 & 0.0883 & svmRadial\\
-0.0112 & 0.1265 & 0.4690 & 0.0954 & earth\\
+\rowcolor{gray!6}  1.1928 & 0.5719 & 0.6860 & 0.4105 & rf\\
+1.2637 & 0.5602 & 0.6851 & 0.3924 & cubist\\
+\rowcolor{gray!6}  1.4182 & 0.6990 & 0.5139 & 0.5068 & svmRadial\\
+1.6893 & 0.7166 & 0.4915 & 0.5374 & earth\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -629,10 +528,10 @@ MAPE & RMSE & RSquared & MAE & Method\\
 \toprule
 MAPE & RMSE & Rsquared & MAE & Method\\
 \midrule
-\rowcolor{gray!6}  0.4930 & 0.2234 & 0.9539 & 0.1578 & cubist\\
-0.5351 & 0.3265 & 0.9568 & 0.2466 & rf\\
-\rowcolor{gray!6}  0.9987 & 0.6076 & 0.6385 & 0.4101 & svmRadial\\
-1.6688 & 0.7260 & 0.5226 & 0.5269 & earth\\
+\rowcolor{gray!6}  0.0078 & 0.0890 & 0.7254 & 0.0669 & cubist\\
+0.0079 & 0.0882 & 0.7465 & 0.0670 & rf\\
+\rowcolor{gray!6}  0.0101 & 0.1138 & 0.5508 & 0.0860 & svmRadial\\
+NaN & 0.1246 & 0.4897 & 0.0896 & earth\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -646,10 +545,10 @@ MAPE & RMSE & Rsquared & MAE & Method\\
 \toprule
 MAPE & RMSE & Rsquared & MAE & Method\\
 \midrule
-\rowcolor{gray!6}  0.0029 & 0.0367 & 0.9586 & 0.0250 & cubist\\
-0.0037 & 0.0436 & 0.9596 & 0.0311 & rf\\
-\rowcolor{gray!6}  0.0084 & 0.1064 & 0.6307 & 0.0717 & svmRadial\\
-0.0107 & 0.1193 & 0.5257 & 0.0908 & earth\\
+\rowcolor{gray!6}  1.0002 & 8.5581 & 0.5508 & 8.5364 & svmRadial\\
+1.0041 & 8.5943 & 0.7286 & 8.5654 & cubist\\
+\rowcolor{gray!6}  1.0043 & 8.5892 & 0.7463 & 8.5691 & rf\\
+NaN & 8.6524 & 0.4645 & 8.6251 & earth\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -675,12 +574,7 @@ neighbor to train, provided robust final model using a radial kernel
 with a cost of 10, passed as the tune length settling on
 \(\sigma = 0.020\) and \(cost = 8\) returning a \(RMSE = 0.1127\)
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# remove echo/eval later [BETHANY: ADD IN VARIMP /}
-\CommentTok{# PERFORMANCE CHART FOR SVM AS ALIGNED WITH GROUP]}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{Group2_Project2_Fall2019_files/figure-latex/unnamed-chunk-9-1.pdf}
 
 \hypertarget{model-2-cubist-tree-regression}{%
 \section{Model 2: Cubist Tree
@@ -716,12 +610,7 @@ Overview:
 Mechanics:
 \url{http://ftp.uni-bayreuth.de/math/statlib/R/CRAN/doc/vignettes/caret/caretTrain.pdf}{]}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# remove echo/eval later [JEREMY: ADD IN VARIMP /}
-\CommentTok{# PERFORMANCE CHART FOR SVM AS ALIGNED WITH GROUP]}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{Group2_Project2_Fall2019_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 \hypertarget{model-3-multivariate-adaptive-regression-splines-mars-regression}{%
 \section{Model 3: Multivariate Adaptive Regression Splines (MARS)
@@ -740,13 +629,7 @@ Our RMSE Cross Validation plots show us that pre-processing
 transformations did not have improve the MARS model. The model performed
 best on our training data when no transformations were applied.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# remove echo/eval later [VINICIO / JULIANN: ADD IN}
-\CommentTok{# VARIMP / PERFORMANCE CHART FOR SVM AS ALIGNED WITH}
-\CommentTok{# GROUP]}
-\end{Highlighting}
-\end{Shaded}
+\includegraphics{Group2_Project2_Fall2019_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 \hypertarget{model-4-random-forest-regression}{%
 \section{Model 4: Random Forest
@@ -782,6 +665,8 @@ variable is randomly permuted.
 
 {[}BETHANY MAKING MAGIC HAPPEN WITH APPROPRIATE VARIMP GRAPH ONCE FINAL
 MODEL SELECTED{]}
+
+\includegraphics{Group2_Project2_Fall2019_files/figure-latex/unnamed-chunk-13-1.pdf}
 
 \hypertarget{conclusion}{%
 \chapter{Conclusion}\label{conclusion}}
