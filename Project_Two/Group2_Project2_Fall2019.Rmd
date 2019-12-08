@@ -413,4 +413,4 @@ Shelton, Robert B. “PH Values Of Common Drinks.” Robert B. Shelton, DDS MAGD
 
 Cubist Model Background: https://www.rulequest.com/cubist-win.html
 Cubist Model Overview:  https://static1.squarespace.com/static/51156277e4b0b8b2ffe11c00/t/56e3056a3c44d8779a61988a/1457718645593/cubist_BRUG.pdf
-Cubist Model Mechanics:  http://ftp.uni-bayreuth.de/math/statlib/R/CRAN/doc/vignettes/caret/caretTrain.pdf]
+Cubist Model Mechanics:  http://ftp.uni-bayreuth.de/math/statlib/R/CRAN/doc/vignettes/caret/caretTrain.pdf]  

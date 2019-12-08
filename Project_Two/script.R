@@ -5,6 +5,15 @@ library(caretEnsemble)
 library(psych)
 library(stats)
 library(data.table)
+library(readxl)
+
+## Import data
+StudentData <- read_xlsx('~/GitHub/CUNY_DATA_624/Project_Two/data/StudentData.xlsx')
+StudentEvaluation <- read_xlsx('~/GitHub/CUNY_DATA_624/Project_Two/data/StudentEvaluation.xlsx') 
+
+## Clean/Standardize Variable Naming Conventions for Both Sets
+names(StudentData) <- gsub(" ", "", names(StudentData))
+names(StudentEvaluation) <- gsub(" ", "", names(StudentEvaluation))
 
 # Load saved work space
 train <- readRDS(file = "train.rsd")
