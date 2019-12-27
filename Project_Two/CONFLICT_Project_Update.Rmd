@@ -239,14 +239,11 @@ tbl.perf.train2 %>%
 **Test Accuracy:**
 
 ```{r}
-tbl.perf.test1 %>% 
-  kable(caption="Test1 Performance", booktabs=T, digits=4) %>% 
-  kable_styling() 
+train<-rename(tbl.perf.train2, Train_Method=Method)
+test<-rename(tbl.perf.test2, Test_Method=Method)
 
-tbl.perf.test2 %>% 
-  kable(caption="Test2 Performance", booktabs=T, digits=4) %>% 
+kable(list(train, test), caption="Test2 Performance", booktabs=T, digits=4)%>%
   kable_styling() 
-
 ```
 
 
